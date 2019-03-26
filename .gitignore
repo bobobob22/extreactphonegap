@@ -1,4 +1,9 @@
 /.idea
 /build
+/phonegap/www/ext-react
+/phonegap/www/app.js
+/phonegap/www/index.html
+
+/phonegap/platforms/ios/www/**
 
 node_modules

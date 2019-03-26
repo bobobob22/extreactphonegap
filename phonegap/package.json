@@ -1,7 +1,7 @@
 {
-  "name": "com.phonegap.helloworld",
+  "name": "com.phonegap.extreactnative",
   "version": "1.0.0",
-  "displayName": "helloworld",
+  "displayName": "ExtReact",
   "cordova": {
     "platforms": [
       "ios"

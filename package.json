@@ -18,7 +18,8 @@
     "prod2": "cd build && static-server --port 8080",
     "test": "jest",
     "update-snapshots": "jest -u",
-    "phonegap:start": "npm run build &&  cp -a build/. phonegap/www && cd phonegap && phonegap run ios"
+    "phonegap:init": "cd phonegap && npm install && cd ..",
+    "phonegap:start": "npm run build && cp -a build/. phonegap/www && cd phonegap && phonegap run ios -d --buildFlag='-UseModernBuildSystem=0'"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",

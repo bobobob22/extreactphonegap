@@ -1,0 +1,38 @@
+.x-panelheader{
+    background: #0E2034;
+    display: none;
+}
+.x-big .x-button{
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px auto;
+    transition: all .5s ease;
+}
+
+.x-big .x-button .x-text-el{
+    color: #EF5526;
+    width: 150px;
+    border: 1px solid #EF5526;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.x-big .x-button .x-text-el:hover{
+    background: #EF5526;
+    color: #fff;
+}
+
+.x-big .x-panelheader.x-horizontal{
+    min-height: unset;
+}
+.x-big .x-paneltitle{
+    padding: 5px 0;
+}
+.x-paneltitle.x-horizontal.x-text-align-left .x-body-el{
+    margin: 0 auto;
+}
+
+.x-big .x-gridcell-body-el{
+    border-right: 1px solid var(--divider-color);
+}

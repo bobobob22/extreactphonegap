@@ -1,0 +1,37 @@
+{
+    "builds": {
+      "native": {
+          "packager": "phonegap",
+          "phonegap" : {
+              "config": {
+                  "platform": "ios",
+                  "id": "com.mydomain.MyApp"
+              }
+          }
+      }
+  },
+    "framework": "ext",
+    "frameworkVersion": "6",
+    "toolkit": "modern",
+    "requires": [],
+    "overrides": [
+      "overrides",
+      "jsdom-environment.js"
+    ],
+    "packages": {
+      "dir": [
+        "../../node_modules/@sencha",
+        "../../modern/packages"
+      ]
+    },
+    "output": {
+      "base": ".",
+      "resources": {
+        "path": "./resources",
+        "shared": "./resources"
+      }
+    },
+    "theme": "theme-material"
+  }
+  
+  

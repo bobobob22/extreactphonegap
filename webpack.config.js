@@ -40,13 +40,16 @@ module.exports = function (env) {
         return {
             mode: 'development',
             cache: true,
+            watch: !!env.phonegapdev,
             devtool: isProd ? 'source-map' : 'cheap-module-source-map',
             context: sourcePath,
             entry: {
                 'app': ['./index.js']
             },
             output: {
-                path: path.resolve(__dirname, 'phonegap/www'),
+                path: path.resolve(__dirname, `phonegap/${env.phonegapdev ?
+                    'platforms/ios/www' : 'www'
+                }`),
                 filename: '[name].js'
             },
             module: {

@@ -7,7 +7,8 @@ import {
   Container,
   FormPanel,
   Grid,
-  Column
+  Column,
+  Label
 } from "@sencha/ext-react";
 import "./UserList.css";
 import { Redirect, Link } from "react-router-dom";
@@ -48,24 +49,19 @@ class UserList extends Component {
 
     const { isLoading, data } = this.state;
 
-    let users;
     if (isLoading) {
-      users = <div>Loading...</div>;
-      return users;
-    } else {
-      users = (
-       
-          <Grid store={data} onItemTap={this.addPhoto}>
-            <Column text="First Name" dataIndex="firstName" flex="1" />
-            <Column text="Last Name" dataIndex="lastName" flex="1" />
-            <Link to="/adduser" className="link">
-              Add new user
-            </Link>
-          </Grid>
-     
-      );
-      return users;
+      return <Label html="Loading"/>;
     }
+
+    return (
+        <Grid store={data} onItemTap={this.addPhoto}>
+          <Column text="First Name" dataIndex="firstName" flex="1" />
+          <Column text="Last Name" dataIndex="lastName" flex="1" />
+          <Link to="/adduser" className="link">
+            Add new user
+          </Link>
+        </Grid>
+    );
   }
 }
 

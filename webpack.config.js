@@ -46,7 +46,7 @@ module.exports = function (env) {
                 'app': ['./index.js']
             },
             output: {
-                path: path.resolve(__dirname, 'build'),
+                path: path.resolve(__dirname, 'phonegap/www'),
                 filename: '[name].js'
             },
             module: {
@@ -76,7 +76,7 @@ module.exports = function (env) {
             },
             plugins,
             devServer: {
-                contentBase: './build',
+                contentBase: './phonegap/www',
                 historyApiFallback: true,
                 hot: false,
                 host: '0.0.0.0',

@@ -11,7 +11,6 @@
     "build": "npm run clean && cross-env webpack --env.environment=production",
     "dev": "webpack-dev-server --env.verbose=no --env.environment=development",
     "start": "npm run dev",
-    "clean": "rimraf build",
     "pretest": "webpack --progress",
     "preupdate-snapshots": "webpack --progress",
     "prod": "webpack-dev-server --env.verbose=no --env.environment=production",
@@ -19,7 +18,7 @@
     "test": "jest",
     "update-snapshots": "jest -u",
     "phonegap:init": "cd phonegap && npm install && cd ..",
-    "phonegap:start": "npm run build && cp -a build/. phonegap/www && cd phonegap && phonegap run ios -d --buildFlag='-UseModernBuildSystem=0'"
+    "phonegap:start": "npm run build && cd phonegap && phonegap run ios -d --buildFlag='-UseModernBuildSystem=0' && cd .."
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",

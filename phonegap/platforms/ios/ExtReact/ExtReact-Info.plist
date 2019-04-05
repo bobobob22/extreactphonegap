@@ -45,11 +45,15 @@
     <string/>
     <key>NSPhotoLibraryUsageDescription</key>
     <string/>
+    <key>UILaunchStoryboardName</key>
+    <string>MainViewController</string>
     <key>UIRequiresFullScreen</key>
     <true/>
     <key>UISupportedInterfaceOrientations</key>
     <array>
       <string>UIInterfaceOrientationPortrait</string>
+      <string>UIInterfaceOrientationLandscapeLeft</string>
+      <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>UISupportedInterfaceOrientations~ipad</key>
     <array>

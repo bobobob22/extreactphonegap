@@ -47,7 +47,6 @@ class Layout extends Component {
 
     return (
       <Container fullscreen layout="fit">
-        {/* <Navigation /> */}
         <Switch>
           <Route path="/" component={UserList} exact />
           <Route path="/adduser" component={AddUser} />

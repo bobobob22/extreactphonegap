@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
+// import Camera, { FACING_MODES, IMAGE_TYPES } from "react-html5-camera-photo";
 import "react-html5-camera-photo/build/css/index.css";
 import axios from "axios";
 import { Redirect } from "react-router";
 import * as tf from "@tensorflow/tfjs";
 import * as mobilenet from "@tensorflow-models/mobilenet";
-import { ExtReact, Container, FormPanel, FileField } from "@sencha/ext-react";
+
 
 import "./User.css";
 
@@ -23,8 +23,9 @@ class User extends Component {
     let id = this.props.match.params.id;
 
     axios
-      .get(`https://extcamera-de846.firebaseio.com//users.json`)
+      .get(`https://extcamera-de846.firebaseio.com/users.json`)
       .then(result => {
+        console.log(result);
         const messages = Object.values(result.data);
         const user = messages.filter(item => {
           return Object.keys(item).some(key => item[key].includes(id));
@@ -39,7 +40,6 @@ class User extends Component {
       reader.onload = function(e) {
         const img = document.createElement("img");
         img.src = e.target.result;
-
         const canvas = document.createElement("canvas");
         let ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0);
@@ -48,7 +48,6 @@ class User extends Component {
         const MAX_HEIGHT = 250;
         let width = img.width;
         let height = img.height;
-
         if (width > height) {
           if (width > MAX_WIDTH) {
             height *= MAX_WIDTH / width;
@@ -62,13 +61,12 @@ class User extends Component {
         }
         canvas.width = width;
         canvas.height = height;
-        // var ctx = canvas.getContext("2d");
         ctx.drawImage(img, 0, 0, width, height);
         dataurl = canvas.toDataURL(file.type);
       };
       reader.readAsDataURL(imageData);
     } else {
-      alert("The File APIs are not fully supported in this browser.");
+      console.log("The File APIs are not fully supported in this browser.");
     }
   }
 
@@ -112,12 +110,7 @@ class User extends Component {
   }
 
   onTakePhoto(dataUri) {
-
-    // console.log(dataUri);
     this.setState({ camera: false, photo: dataUri, loading: true });
-
-    console.log(dataUri, "@");
-
     this.convertURIToImageData(dataUri).then(imageData => {
       mobilenet
         .load()
@@ -131,7 +124,6 @@ class User extends Component {
   }
 
   selectPhoto = e => {
-    return false;
     e.preventDefault();
     let reader = new FileReader();
 
@@ -167,11 +159,15 @@ class User extends Component {
     this.setState({ redirect: true });
   };
 
+  removeUser = () => {
+    // console.log(this.state.user);
+    // axios.delete('https://extcamera-de846.firebaseio.com/users.json')
+  }
+
   render() {
     if (this.state.redirect) {
       return <Redirect push to="/" />;
     }
-
     let user;
     if (this.state.user.length) {
       user = (
@@ -179,49 +175,22 @@ class User extends Component {
           <p className="camera-user">
             User: {this.state.user[0].firstName} {this.state.user[0].lastName}
           </p>
-          {/* <input
+          <label className="camera-label" htmlFor="inp12">Take a photo</label>
+          <input
+            id="inp12"
             className="camera-input"
             type="file"
             ref="photo2"
             onChange={this.selectPhoto}
             capture="camera"
             accept="image/*"
-          /> */}
-
-          {/* <ExtReact>
-                <Container layout="center">
-                    <FormPanel shadow>
-                        <FileField
-                            label="Select a File"
-                            name="photo"
-                            accept="image"
-                            ref="photo"
-                            onChange={this.selectPhoto}
-                        />
-                    </FormPanel>
-                </Container>
-            </ExtReact>  */}
-            {/* } */}
-
-           {this.state.camera ? (
-            <>
-              <Camera
-                idealFacingMode={FACING_MODES.ENVIRONMENT}
-                imageType={IMAGE_TYPES.JPG}
-                isImageMirror={false}
-                onTakePhoto={dataUri => {
-                  this.onTakePhoto(dataUri);
-                }}
-              />
-            </>
-          ) : (
+          />
           <>
             <img
               ref="photoImage"
               className="photo-img"
               src={this.state.photo}
             />
-
             {this.state.loading ? (
             <div className="spinner">
               <div className="bounce1" />
@@ -230,7 +199,16 @@ class User extends Component {
             </div>
             ) : null}
             <ul className="prediction-list">
-              {this.state.predictions.map(prediction => {
+               {this.state.predictions && this.state.predictions.length > 0 ? (
+                 <>
+                  <li>Asymmetry: <input type="checkbox" checked /></li>
+                    <li>Border irregularity: <input type="checkbox"  /></li>
+                    <li>Color: <input type="checkbox" checked /></li>
+                 </>
+               ) : null }
+                   
+                
+              {/* {this.state.predictions.map(prediction => {
                 return (
                   <li key={`prediction-${prediction.className}`}>
                     Predicted thing: {prediction.className}
@@ -238,16 +216,16 @@ class User extends Component {
                     Predicted percent {prediction.probability.toFixed(2)}
                   </li>
                 );
-              })}
+              })} */}
             </ul>
           </>
-          )
-            }
-
           <div className="full-width text-center">
             <button className="link" onClick={this.showUserList}>
               Back to user list
             </button>
+            {/* <button className="link" onClick={this.removeUser}>
+              Remove user
+            </button> */}
           </div>
         </div>
       );
@@ -259,3 +237,4 @@ class User extends Component {
 }
 
 export default User;
+

@@ -1,14 +1,13 @@
 
 .link{
-    margin: 10px 0;
     color: #EF5526;
     text-align: center;
     text-decoration: none;
     border: 1px solid #EF5526;
     display: inline-block;
     width: 150px;
-    margin: 20px auto;
-    padding: 5px 10px;
+    margin: 10px auto;
+    padding: 10px 15px;
     transition: all .5s ease;
     background: #fff;
     font-size: 16px;
@@ -21,4 +20,18 @@
 
 #ext-viewport:after{
     display: none;
+}
+
+.x-gridrow .x-cells-el{
+    table-layout: auto;
+}
+
+.loading{
+    background-color: #FA693C;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 30px);
+    font-size: 20px;
 }

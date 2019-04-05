@@ -6,8 +6,9 @@
     width: 100%;
     text-align: center;
     text-decoration: none;
-    margin: 20px auto;
+    margin: 10px auto;
     transition: all .5s ease;
+    width: 50%;
 }
 
 .x-big .x-button .x-text-el{
@@ -36,3 +37,4 @@
 .x-big .x-gridcell-body-el{
     border-right: 1px solid var(--divider-color);
 }
+
